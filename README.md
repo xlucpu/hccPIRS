@@ -3,7 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package calculates replication stress-related prognostic index (*PI~RS~*) for HBV-associated HCC patients, and estimates the enrichment of 21 replication stress signatures. If specified, a heatmap will be generated to show the landscape of the replication stress signatures in an ascending order of *PI~RS~* score.
+This package calculates replication stress-related prognostic index (*PI{RS}*) for HBV-associated HCC patients, and estimates the enrichment of 21 replication stress signatures. If specified, a heatmap will be generated to show the landscape of the replication stress signatures in an ascending order of *PI{RS}* score.
 
 ## Citation
 
@@ -45,5 +45,4 @@ rsMat[1:21,1:3]
 
 res$hm # show the heatmap
 ```
-
-<img src="https://user-images.githubusercontent.com/57204704/131953321-cc06a99f-8f68-4505-ab5c-5bbbba886bbf.jpg height="230" align="right" />
+<img src="https://user-images.githubusercontent.com/57204704/131953321-cc06a99f-8f68-4505-ab5c-5bbbba886bbf.jpg" height="230" align="right" />
