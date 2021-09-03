@@ -1,0 +1,33 @@
+Package: hccPIRS
+Title: Replication stress-related prognostic index in HCC
+Version: 0.99.1
+Authors@R: 
+    person(given = "Xiaofan",
+           family = "Lu",
+           role = c("aut", "cre"),
+           email = "xlu.cpu@foxmail.com",
+           comment = c(ORCID = "0000-0003-2417-6548"))
+Description: This function calculates replication stress-related prognostic index (PIRS) for HBV-associated HCC patients, and estimates the enrichment of 21 replication stress signatures.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Depends: R (>= 4.0.1)
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: 
+    GSVA,
+    ComplexHeatmap,
+    circlize,
+    gplots
+biocViews: Classification, CancerData
+URL: https://github.com/xlucpu/hccPIRS
+BugReports: https://github.com/xlucpu/hccPIRS/issues
+Collate: 
+    'hccPIRS.R'
+    'dataset.R'
+    'global.R'
