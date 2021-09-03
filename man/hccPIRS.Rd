@@ -41,6 +41,24 @@ hccPIRS(
 \description{
 This function calculates replication stress-related prognostic index (PIRS) for HBV-associated HCC patients, and estimates the enrichment of 21 replication stress signatures.
 }
+\examples{
+library(hccPIRS)
+load(system.file("extdata", "tpm.demo.RData", package = "hccPIRS", mustWork = TRUE)) # load example data
+res <- hccPIRS(expr = tpm.demo,
+               scaleFlag  = FALSE,
+               centerFlag = FALSE,
+               doplot = TRUE,
+               fig.path = getwd(),
+               fig.name   = "heatmap of replication stress",
+               enrich = "gsva",
+               width = 6,
+               height = 4)
+pirs <- res$pirs # extract normalized PIRS score for each sample
+print(pirs)
+rsMat <- res$RS.score # extract enrichment score for replication stress signatures
+rsMat[1:21, 1:3]
+res$hm # show the heatmap
+}
 \references{
 Dreyer, SB, Upstill-Goddard, R, Paulus-Hock, V, Paris, C, Lampraki, E-M, Dray, E, et al. (2021). Targeting DNA Damage Response and Replication Stress in Pancreatic Cancer. Gastroenterology 160: 362-377.e313.
 }

@@ -23,6 +23,22 @@
 #' @references Dreyer, SB, Upstill-Goddard, R, Paulus-Hock, V, Paris, C, Lampraki, E-M, Dray, E, et al. (2021). Targeting DNA Damage Response and Replication Stress in Pancreatic Cancer. Gastroenterology 160: 362-377.e313.
 
 #' @examples
+#' library(hccPIRS)
+#' load(system.file("extdata", "tpm.demo.RData", package = "hccPIRS", mustWork = TRUE)) # load example data
+#' res <- hccPIRS(expr = tpm.demo,
+#'                scaleFlag  = FALSE,
+#'                centerFlag = FALSE,
+#'                doplot = TRUE,
+#'                fig.path = getwd(),
+#'                fig.name   = "heatmap of replication stress",
+#'                enrich = "gsva",
+#'                width = 6,
+#'                height = 4)
+#' pirs <- res$pirs # extract normalized PIRS score for each sample
+#' print(pirs)
+#' rsMat <- res$RS.score # extract enrichment score for replication stress signatures
+#' rsMat[1:21, 1:3]
+#' res$hm # show the heatmap
 
 hccPIRS <- function(expr = NULL,
                     scaleFlag  = FALSE,
@@ -33,17 +49,6 @@ hccPIRS <- function(expr = NULL,
                     enrich = "gsva",
                     width = 1,
                     height = 4) {
-
-  # load R package
-  # library(ComplexHeatmap)
-  # library(GSVA)
-  # library(circlize)
-  # library(gplots)
-
-  # load internal coefficient and expression demo for calling PIRS
-  # load("pirs.coeff.RData")
-  # load("RS.signature.RData")
-  # load("tpm.demo.RData")
 
   # customized function for min-max normalization
   range01 <- function(x){(x-min(x))/(max(x)-min(x)) * 10}
