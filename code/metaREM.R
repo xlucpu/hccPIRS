@@ -4,42 +4,20 @@
 
 library(MetaVolcanoR)
 
-# load limma differential expression results
-tmp1 <- read.table(file.path(res.path,"limma results between PIHRS vs. PILRS in tcga.txt"),sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
-tmp1 <- tmp1[order(tmp1$log2fc,decreasing = T),]
-
-tmp2 <- read.table(file.path(res.path,"limma results between PIHRS vs. PILRS in cn.txt"),sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
-tmp2 <- tmp2[order(tmp2$log2fc,decreasing = T),]
-
-tmp3 <- read.table(file.path(res.path,"limma results between PIHRS vs. PILRS in icgc.txt"),sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
-tmp3 <- tmp3[order(tmp3$log2fc,decreasing = T),]
-
-tmp4 <- read.table(file.path(res.path,"limma results between PIHRS vs. PILRS in gse14520.txt"),sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
-tmp4 <- tmp4[order(tmp4$log2fc,decreasing = T),]
-
-tmp5 <- read.table(file.path(res.path,"limma results between PIHRS vs. PILRS in gse121248.txt"),sep = "\t",row.names = NULL,header = T,check.names = F,stringsAsFactors = F)
-tmp5 <- tmp5[order(tmp5$log2fc,decreasing = T),]
-
-# perform REM meta-analysis
-diffexplist <- list(tcga = tmp1,
-                    cn = tmp2,
-                    icgc = tmp3,
-                    gse14520 = tmp4,
-                    gse121248 = tmp5)
-
-meta_degs_rem <- rem_mv(diffexp = diffexplist,
+# REM meta-analysis
+meta_degs_rem <- rem_mv(diffexp = diffexplist, # a list of differential expression analysis results
                         pcriteria = "padj",
-                        foldchangecol = 'log2fc', 
+                        foldchangecol = 'log2fc',
                         genenamecol = 'id',
                         geneidcol = NULL,
                         collaps = FALSE,
                         llcol = 'CI.L',
                         rlcol = 'CI.R',
-                        vcol = NULL, 
+                        vcol = NULL,
                         cvar = TRUE,
                         metathr = 0.01,
                         jobname = "LIHC-REM",
-                        outputfolder = res.path, 
+                        outputfolder = res.path,
                         draw = 'HTML',
                         ncores = 1)
 meta_degs_rem@MetaVolcano
@@ -61,16 +39,16 @@ dnx2 <- x[which(x$padj < 0.05 & x$randomSummary < -(log2(2))),]
 
 pdf(file.path(fig.path,"volcano plot for meta differential analysis.pdf"), width = 8, height = 8)
 par(bty="o", mgp = c(1.9,.33,0), mar=c(3.1,3.1,2.1,2.1)+.1, las=1, tcl=-.25)
-plot(NULL, NULL, ylim = c(0,80), xlim = c(-3,3), 
+plot(NULL, NULL, ylim = c(0,80), xlim = c(-3,3),
      xlab = "Summary log2FoldChange", ylab = "-log10(Summary FDR)",col="white",
      main = "Meta-analysis (n=606)")
-rect(par("usr")[1], 
+rect(par("usr")[1],
      par("usr")[3],
      par("usr")[2],
      par("usr")[4],
      col = "white",
      border = F)
-grid(col = "grey90", lty = 2, lwd = 1.5) 
+grid(col = "grey90", lty = 2, lwd = 1.5)
 points(x$randomSummary,-log10(x$randomP), col = alpha("grey80",0.6), pch = 19, cex = 0.8)
 points(upx$randomSummary,-log10(upx$randomP), col = alpha(jama[2],0.6), pch = 19, cex = 1.2)
 for (i in 1:nrow(upx)) {
@@ -104,25 +82,25 @@ sortdf <- df[order(df$NES),]
 sortdf$ID <- factor(sortdf$ID, levels = sortdf$ID)
 head(sortdf)
 
-ggplot(sortdf, aes(ID, NES, fill = group)) + geom_bar(stat = 'identity') + 
-  coord_flip() + 
-  scale_fill_manual(values = c(jama[1], 'snow3', jama[2]), guide = FALSE) + 
-  
+ggplot(sortdf, aes(ID, NES, fill = group)) + geom_bar(stat = 'identity') +
+  coord_flip() +
+  scale_fill_manual(values = c(jama[1], 'snow3', jama[2]), guide = FALSE) +
+
   geom_text(data = subset(df, NES > 0),
             aes(x=ID, y= -0.05, label= paste0(" ", ID), color = group),
-            size = 4, 
-            hjust = "inward" ) +  
+            size = 4,
+            hjust = "inward" ) +
   geom_text(data = subset(df, NES < 0),
             aes(x=ID, y= 0.05, label=ID, color = group),
-            size = 4, hjust = "outward") +  
+            size = 4, hjust = "outward") +
   scale_colour_manual(values = c("black","snow3","black"), guide = FALSE) +
-  
+
   xlab("") +ylab("Normalized Enrichment Score\nMeta analysis of PIHRS vs. PILRS")+
   theme_bw() +
   theme(panel.grid =element_blank(),
         axis.text.x = element_text(size = 10, colour = "black"),
         panel.border = element_rect(size = 0.6),
-        axis.line.y = element_blank(), 
-        axis.ticks.y = element_blank(), 
+        axis.line.y = element_blank(),
+        axis.ticks.y = element_blank(),
         axis.text.y = element_blank())
 ggsave(file.path(fig.path,"gsea plot for meta analysis of PIHRS vs. PILRS.pdf"), width = 8,height = 8)
