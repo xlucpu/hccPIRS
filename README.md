@@ -3,7 +3,9 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-This package calculates replication stress-related prognostic index ($$PI_{RS}$$) for HBV-associated HCC patients, and estimates the enrichment of 21 replication stress signatures. If specified, a heatmap will be generated to show the landscape of the replication stress signatures in an ascending order of *PI{RS}* score.
+## Introduction
+
+This package calculates replication stress-related prognostic index (*PI<sub>RS</sub>*) for HBV-associated HCC patients, and estimates the enrichment of 21 replication stress signatures. If specified, a heatmap will be generated to show the landscape of the replication stress signatures in an ascending order of *PI<sub>RS</sub>* score.
 
 ## Citation
 
