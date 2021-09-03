@@ -41,11 +41,9 @@ hccPIRS <- function(expr = NULL,
   # library(gplots)
 
   # load internal coefficient and expression demo for calling PIRS
-  load("pirs.coeff.RData")
-  load("RS.signature.RData")
-  load("tpm.demo.RData")
-
-  expr = tpm.demo
+  # load("pirs.coeff.RData")
+  # load("RS.signature.RData")
+  # load("tpm.demo.RData")
 
   # customized function for min-max normalization
   range01 <- function(x){(x-min(x))/(max(x)-min(x)) * 10}
