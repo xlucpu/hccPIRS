@@ -45,4 +45,4 @@ rsMat[1:21,1:3]
 
 res$hm # show the heatmap
 ```
-<img src="https://user-images.githubusercontent.com/57204704/131953321-cc06a99f-8f68-4505-ab5c-5bbbba886bbf.jpg" height="230" align="right" />
+<img src="https://user-images.githubusercontent.com/57204704/131953321-cc06a99f-8f68-4505-ab5c-5bbbba886bbf.jpg" height="400" align="center" />
