@@ -19,7 +19,7 @@
 #' @import GSVA
 #' @import circlize
 #' @import gplots
-#'
+#' @import grid
 #' @references Dreyer, SB, Upstill-Goddard, R, Paulus-Hock, V, Paris, C, Lampraki, E-M, Dray, E, et al. (2021). Targeting DNA Damage Response and Replication Stress in Pancreatic Cancer. Gastroenterology 160: 362-377.e313.
 
 #' @examples

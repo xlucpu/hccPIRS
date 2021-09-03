@@ -23,7 +23,8 @@ Imports:
     GSVA,
     ComplexHeatmap,
     circlize,
-    gplots
+    gplots,
+    grid
 biocViews: Classification, CancerData
 URL: https://github.com/xlucpu/hccPIRS
 BugReports: https://github.com/xlucpu/hccPIRS/issues
