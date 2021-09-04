@@ -24,7 +24,6 @@ devtools::install_github("xlucpu/hccPIRS")
 ## Example
 
 ``` r
-library(hccPIRS)
 ## basic example code
 library(hccPIRS)
 load(system.file("extdata", "tpm.demo.RData", package = "hccPIRS", mustWork = TRUE)) # load example data
